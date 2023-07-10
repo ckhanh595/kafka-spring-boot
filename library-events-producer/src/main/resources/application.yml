@@ -1,49 +1,6 @@
 spring:
   profiles:
     active: local
----
-spring:
-  config:
-    activate:
-      on-profile: local
-  kafka:
-    template:
-      default-topic: library-events
-    producer:
-      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
-      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-      properties:
-        acks: all
-        retries: 10
-        retry.backoff.ms: 2000
-    admin:
-      properties:
-        bootstrap.servers: localhost:9092,localhost:9093,localhost:9094
----
-#spring:
-#  config:
-#    activate:
-#      on-profile: nonprod
-#  kafka:
-#    template:
-#      default-topic: library-events
-#    producer:
-#      bootstrap-servers: localhost:9095,localhost:9096,localhost:9097
-#      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
-#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      ssl:
-#        trust-store-location: file:/Dilip/udemy/kafka-for-developers-using-spring-boot/ssl/client.truststore.jks
-#        trust-store-password: password
-#        key-store-location: file:/Dilip/udemy/kafka-for-developers-using-spring-boot/ssl/client.keystore.jks
-#        key-store-password: password
-#      properties:
-#        acks: all
-#        retries: 10
-#        retry.backoff.ms: 1000
-#        security:
-#          protocol: SSL
-#        ssl.endpoint.identification.algorithm:
 
 ---
 spring:
@@ -51,7 +8,37 @@ spring:
     activate:
       on-profile: prod
   kafka:
+    template:
+      default-topic: wiki-demo
     producer:
-      bootstrap-servers: prod:9092
-      key-serializer: org.apache.kafka.common.serialization.IntegerSerializer
+      bootstrap-servers: cluster.playground.cdkt.io:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        security:
+          protocol: SASL_SSL
+        sasl:
+          jaas:
+            config: org.apache.kafka.common.security.plain.PlainLoginModule required username="2aAz1Z1ma6Wf5C3uCLYmqf" password="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGguY29uZHVrdG9yLmlvIiwic291cmNlQXBwbGljYXRpb24iOiJhZG1pbiIsInVzZXJNYWlsIjpudWxsLCJwYXlsb2FkIjp7InZhbGlkRm9yVXNlcm5hbWUiOiIyYUF6MVoxbWE2V2Y1QzN1Q0xZbXFmIiwib3JnYW5pemF0aW9uSWQiOjc0MjU4LCJ1c2VySWQiOjg2Mzc1LCJmb3JFeHBpcmF0aW9uQ2hlY2siOiJmM2M4ZGZkZi1jMTc0LTQ5YTctYjQyNi04YTM5M2RjNzY0M2YifX0.hdnh8i8-nnm1BYswi0U0N8rQfEjq6tu3sWv2BSiBAVo";
+          mechanism: PLAIN
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  kafka:
+    template:
+      default-topic: wiki-demo
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        acks: all
+        retries: 10
+        retry.backoff.ms: 2000
+    admin:
+      properties:
+        bootstrap.servers: localhost:9092
+
