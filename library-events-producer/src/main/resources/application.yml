@@ -19,7 +19,7 @@ spring:
           protocol: SASL_SSL
         sasl:
           jaas:
-            config: org.apache.kafka.common.security.plain.PlainLoginModule required username="2aAz1Z1ma6Wf5C3uCLYmqf" password="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGguY29uZHVrdG9yLmlvIiwic291cmNlQXBwbGljYXRpb24iOiJhZG1pbiIsInVzZXJNYWlsIjpudWxsLCJwYXlsb2FkIjp7InZhbGlkRm9yVXNlcm5hbWUiOiIyYUF6MVoxbWE2V2Y1QzN1Q0xZbXFmIiwib3JnYW5pemF0aW9uSWQiOjc0MjU4LCJ1c2VySWQiOjg2Mzc1LCJmb3JFeHBpcmF0aW9uQ2hlY2siOiJmM2M4ZGZkZi1jMTc0LTQ5YTctYjQyNi04YTM5M2RjNzY0M2YifX0.hdnh8i8-nnm1BYswi0U0N8rQfEjq6tu3sWv2BSiBAVo";
+            config: org.apache.kafka.common.security.plain.PlainLoginModule required username="5LNIJNevEcJCu0a3BQAmkj" password="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2F1dGguY29uZHVrdG9yLmlvIiwic291cmNlQXBwbGljYXRpb24iOiJhZG1pbiIsInVzZXJNYWlsIjpudWxsLCJwYXlsb2FkIjp7InZhbGlkRm9yVXNlcm5hbWUiOiI1TE5JSk5ldkVjSkN1MGEzQlFBbWtqIiwib3JnYW5pemF0aW9uSWQiOjc0NjcyLCJ1c2VySWQiOjg2Mzc1LCJmb3JFeHBpcmF0aW9uQ2hlY2siOiI1YjE2ZGE3MC00ZjczLTQ1N2UtODQ3YS1hNWNlM2ZmN2FhYTYifX0.DlQHjg9qLyarc7evCd12S9SbLH9C4doviEpFBpKLdcU";
           mechanism: PLAIN
 
 ---
@@ -31,13 +31,13 @@ spring:
     template:
       default-topic: wiki-demo
     producer:
-      bootstrap-servers: localhost:9092
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       properties:
         acks: all
         retries: 10
-        retry.backoff.ms: 2000
+        retry.backoff.ms: 1000
     admin:
       properties:
         bootstrap.servers: localhost:9092

@@ -1,4 +1,4 @@
-package com.learnkafka;
+package com.learnkafka.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-import java.util.concurrent.ExecutionException;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,7 +19,7 @@ public class WikiService {
     private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
-    public void sendWikiEvent(WikiMedia wikiMedia) throws JsonProcessingException, ExecutionException, InterruptedException {
+    public void sendWikiEvent(WikiMedia wikiMedia) throws JsonProcessingException {
         String topic = "wiki-demo";
         String key = wikiMedia.getType();
         String value = objectMapper.writeValueAsString(wikiMedia);
@@ -47,10 +45,10 @@ public class WikiService {
 
     private void handleFailure(String key, String value, Throwable ex) {
         log.error("Custom error sending the message and the exception is {}", ex.getMessage());
-        try {
-            throw ex;
-        } catch (Throwable throwable) {
-            log.error("Error in OnFailure: {}", throwable.getMessage());
-        }
+//        try {
+//            throw ex;
+//        } catch (Throwable throwable) {
+//            log.error("Error in OnFailure: {}", throwable.getMessage());
+//        }
     }
 }

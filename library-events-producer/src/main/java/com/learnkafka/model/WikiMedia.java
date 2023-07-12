@@ -17,6 +17,8 @@ public class WikiMedia {
 
     private String type;
 
+    private String title;
+
     @JsonProperty("notify_url")
     private String notifyUrl;
 
