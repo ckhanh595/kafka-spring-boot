@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @Builder
-@Entity
+//@Entity
 public class Book {
     @Id
     private Integer bookId;

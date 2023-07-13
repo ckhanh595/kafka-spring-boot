@@ -19,7 +19,7 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 @Builder
-@Entity
+//@Entity
 public class LibraryEvent {
     @Id
     @GeneratedValue

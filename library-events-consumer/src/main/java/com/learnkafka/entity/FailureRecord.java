@@ -1,9 +1,15 @@
 package com.learnkafka.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import lombok.*;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,20 +19,20 @@ import javax.persistence.*;
 @Entity
 public class FailureRecord {
     @Id
-    @GeneratedValue
-    private Integer bookId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String topic;
 
-    private Integer key;
+    private String recordKey;
 
     private String errorRecord;
 
-    private Integer partition;
+    private Integer recordPartition;
 
-    private Long offset_value;
+    private Long recordOffset;
 
-    private String exception;
+    private String exceptionDetail;
 
     private String status;
 }
