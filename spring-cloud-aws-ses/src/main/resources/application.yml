@@ -10,3 +10,11 @@ cloud:
       secret-key: TYU3hp+6wsbXgaXJk2RNyr9c/vw2cFMtqBCB1kZ+
 server:
   port: 8085
+
+spring:
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092,localhost:9093,localhost:9094
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      group-id: wiki-email-group

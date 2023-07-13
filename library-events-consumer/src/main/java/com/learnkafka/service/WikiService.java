@@ -2,7 +2,6 @@ package com.learnkafka.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.learnkafka.entity.LibraryEvent;
 import com.learnkafka.entity.WikiMedia;
 import com.learnkafka.repository.WikiRepository;
 import lombok.RequiredArgsConstructor;
