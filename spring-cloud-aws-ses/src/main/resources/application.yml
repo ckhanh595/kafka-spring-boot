@@ -5,6 +5,9 @@ cloud:
       auto: false
     stack:
       auto: false
+    credentials:
+      access-key: AKIAVPIKMT5QRCHVS6CY(removed)
+      secret-key: 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(removed)
 server:
   port: 8085
 
